@@ -45,21 +45,20 @@ namespace OpenMS
 
     /// @brief Shared featurization for PeptDeep RT, CCS, and MS2 ONNX predictors.
     ///
-    /// Modified peptides are intentionally rejected for now. The generated mod_x
-    /// tensor is zero-filled and therefore represents unmodified peptides only.
+    /// Dynamically handles both unmodified and modified peptides.
     class OPENMS_DLLAPI PeptDeepInputBuilder
     {
     public:
-      static PeptDeepInputBatch buildUnmodifiedPeptideBatch(
+      static PeptDeepInputBatch buildPeptideBatch(
         const std::vector<std::string>& peptides,
         const PeptDeepInputConfig& config = PeptDeepInputConfig());
 
-      static PeptDeepInputBatch buildUnmodifiedChargedBatch(
+      static PeptDeepInputBatch buildChargedBatch(
         const std::vector<std::string>& peptides,
         const std::vector<float>& charges,
         const PeptDeepInputConfig& config = PeptDeepInputConfig());
 
-      static PeptDeepInputBatch buildUnmodifiedInstrumentBatch(
+      static PeptDeepInputBatch buildInstrumentBatch(
         const std::vector<std::string>& peptides,
         const std::vector<float>& charges,
         const std::vector<float>& nces,
